@@ -11,10 +11,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 @ServletComponentScan
 @EnableScheduling
-public class EShopApplication {
+public class EmtAudApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EShopApplication.class, args);
+        SpringApplication.run(EmtAudApplication.class, args);
     }
 
     @Bean
