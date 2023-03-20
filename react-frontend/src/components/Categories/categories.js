@@ -1,6 +1,6 @@
 import React from "react";
 
-const manufacturers = (props) => {
+const categories = (props) => {
     return (
         <div className={"container mm-4 mt-5"}>
             <div className={"row"}>
@@ -9,15 +9,15 @@ const manufacturers = (props) => {
                         <thead>
                         <tr>
                             <th scope={"col"}>Name</th>
-                            <th scope={"col"}>Address</th>
+                            <th scope={"col"}>Description</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {props.manufacturers.map((term) => {
+                        {props.categories.map((term) => {
                             return (
                                 <tr>
                                     <td>{term.name}</td>
-                                    <td>{term.address}</td>
+                                    <td>{term.description}</td>
                                 </tr>
                             );
                         })}
@@ -27,7 +27,6 @@ const manufacturers = (props) => {
             </div>
         </div>
     );
-
 }
 
-export default manufacturers;
+export default categories;

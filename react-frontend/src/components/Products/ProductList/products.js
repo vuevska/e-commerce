@@ -1,6 +1,7 @@
 import React from "react";
+import ProductTerm from "../ProductTerm/productTerm";
 
-const manufacturers = (props) => {
+const products = (props) => {
     return (
         <div className={"container mm-4 mt-5"}>
             <div className={"row"}>
@@ -9,16 +10,16 @@ const manufacturers = (props) => {
                         <thead>
                         <tr>
                             <th scope={"col"}>Name</th>
-                            <th scope={"col"}>Address</th>
+                            <th scope={"col"}>Price</th>
+                            <th scope={"col"}>Quantity</th>
+                            <th scope={"col"}>Category</th>
+                            <th scope={"col"}>Manufacturer</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {props.manufacturers.map((term) => {
+                        {props.products.map((term) => {
                             return (
-                                <tr>
-                                    <td>{term.name}</td>
-                                    <td>{term.address}</td>
-                                </tr>
+                                <ProductTerm term={term}/>
                             );
                         })}
                         </tbody>
@@ -27,7 +28,6 @@ const manufacturers = (props) => {
             </div>
         </div>
     );
-
 }
 
-export default manufacturers;
+export default products;
