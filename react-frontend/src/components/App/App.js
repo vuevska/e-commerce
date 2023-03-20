@@ -5,7 +5,9 @@ import Manufacturers from "../Manufacturers/manufacturers";
 import Categories from "../Categories/categories";
 import Products from "../Products/ProductList/products";
 import Header from "../Header/header";
+import ProductAdd from "../Products/ProductAdd/productAdd";
 import EShopService from "../../repository/eshopRepository";
+import ProductEdit from "../Products/ProductEdit/productEdit";
 
 class App extends Component {
 
@@ -14,7 +16,8 @@ class App extends Component {
         this.state = {
             manufacturers: [],
             products: [],
-            categories: []
+            categories: [],
+            selectedProduct: {}
         }
     }
 
@@ -27,7 +30,9 @@ class App extends Component {
                         <Routes>
                             <Route path={"/manufacturers"} exact element={ <Manufacturers manufacturers={this.state.manufacturers}/>}/>
                             <Route path={"/categories"} exact element={ <Categories categories={this.state.categories}/>}/>
-                            <Route path={"/products"} exact element={ <Products products={this.state.products}/>}/>
+                            <Route path={"/products/add"} exact element={ <ProductAdd categories={this.state.categories} manufacturers={this.state.manufacturers} onAddProduct={this.addProduct}/>}/>
+                            <Route path={"products/edit/:id"} exact element={ <ProductEdit categories={this.state.categories} manufacturers={this.state.manufacturers} onEditProduct={this.editProduct} product={this.state.selectedProduct}/>}/>
+                            <Route path={"/products"} exact element={ <Products products={this.state.products} onDelete={this.deleteProduct} onEdit={this.getProduct}/>}/>
                             <Route path="/" element={<Navigate replace to="/products" />} />
                         </Routes>
 
@@ -68,6 +73,36 @@ class App extends Component {
                 this.setState({
                     products: data.data
                 })
+            });
+    }
+
+    deleteProduct = (id) => {
+        EShopService.deleteProduct(id)
+            .then(() => {
+                this.loadProducts();
+            });
+    }
+
+    addProduct = (name, price, quantity, category, manufacturer) => {
+        EShopService.addProduct(name, price, quantity, category, manufacturer)
+            .then(() => {
+                this.loadProducts();
+            });
+    }
+
+    getProduct = (id) => {
+        EShopService.getProduct(id)
+            .then((data) => {
+                this.setState({
+                    selectedProduct: data.data
+                });
+            })
+    }
+
+    editProduct = (id, name, price, quantity, category, manufacturer) => {
+        EShopService.editProduct(id, name, price, quantity, category, manufacturer)
+            .then(() => {
+                this.loadProducts();
             });
     }
 }
