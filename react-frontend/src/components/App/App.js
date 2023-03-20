@@ -15,10 +15,13 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Manufacturers manufacturers={this.state.manufacturers}>
-                </Manufacturers>
+                <Manufacturers manufacturers={this.state.manufacturers}/>
             </div>
         );
+    }
+
+    componentDidMount() {
+        this.loadManufacturers();
     }
 
     loadManufacturers = () => {
@@ -28,9 +31,6 @@ class App extends Component {
                     manufacturers : data.data
                 })
             });
-    }
-
-    componentDidMount() {
     }
 }
 
