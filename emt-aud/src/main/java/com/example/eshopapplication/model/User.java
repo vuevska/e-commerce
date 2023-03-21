@@ -38,8 +38,8 @@ public class User implements UserDetails {
     // ..ToOne --> default EAGER
     // ..ToMany --> default LAZY
 
-    @OneToMany(mappedBy = "user")
-    private List<ShoppingCart> carts;
+//    @OneToMany(mappedBy = "user")
+//    private List<ShoppingCart> carts;
 
     public User() {
     }

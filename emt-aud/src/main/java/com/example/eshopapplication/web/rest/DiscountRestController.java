@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/discounts")
 public class DiscountRestController {
 
@@ -19,12 +20,12 @@ public class DiscountRestController {
         this.discountService = discountService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Discount> findAll() {
         return this.discountService.findAll();
     }
 
-    @GetMapping("/pagination")
+    @GetMapping
     public List<Discount> findAllWithPagination(Pageable pageable) {
         return this.discountService.findAllWithPagination(pageable).getContent();
     }
