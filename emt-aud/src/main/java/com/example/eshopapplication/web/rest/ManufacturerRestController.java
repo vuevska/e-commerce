@@ -3,6 +3,7 @@ package com.example.eshopapplication.web.rest;
 import com.example.eshopapplication.model.Manufacturer;
 import com.example.eshopapplication.service.ManufacturerService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class ManufacturerRestController {
     }
 
     @GetMapping
+//    @PreAuthorize("hasRole('ADMIN')")
     public List<Manufacturer> findAll() {
         return this.manufacturerService.findAll();
     }

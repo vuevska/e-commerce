@@ -1,0 +1,21 @@
+### login sucess
+POST http://localhost:9091/login
+Content-Type: application/json
+
+{"username":"111111","password":"111111"}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  var jwt=response.body
+  client.global.set("jwt", response.body)
+});
+%}
+
+### show manufacturers
+GET http://localhost:9091/api/manufacturers
+Authorization: {{jwt}}
+
+### show categories
+GET http://localhost:9091/api/categories
+Authorization: {{jwt}}
